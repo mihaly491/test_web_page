@@ -1,0 +1,19 @@
+body {
+	background-color: #8200ff;
+	color: white;
+}
+
+h1 {
+	font-family: Verdana, Tahoma, sans-serif;
+	text-transform: uppercase;
+}
+
+#greeting_message {
+	border: 2px solid #d998eb;
+	padding: 10px;
+	text-align: center;
+	margin: 0 auto;
+	width: 100px;
+	height: 50px;
+	visibility: hidden;
+}
