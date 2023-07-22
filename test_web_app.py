@@ -1,10 +1,13 @@
 import pytest
+import os
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote import webelement
 from selenium.webdriver.support.color import Color
+
+
 
 @pytest.fixture
 def driver():
@@ -17,7 +20,7 @@ def driver():
 
 def test_background_color(driver):
     # Открываем веб-страницу
-    driver.get("file:///D:/work/Python/pytest/test_web_page/index.html")
+    driver.get(f"file:///{os.path.abspath(os.getcwd())}/index.html")
 
     # Находим элемент с приветствием и проверяем, что оно правильное
     page = driver.find_element(By.TAG_NAME, "body")
@@ -25,10 +28,9 @@ def test_background_color(driver):
     assert page_bgcolor_hex == "#8200ff"
 
 
-
 def test_greeting_message(driver):
     # Открываем веб-страницу
-    driver.get("file:///D:/work/Python/pytest/test_web_page/index.html")
+    driver.get(f"file:///{os.path.abspath(os.getcwd())}/index.html")
 
     # Находим поле для ввода имени и вводим имя пользователя
     name_input = driver.find_element(By.ID, "name_input")
@@ -45,7 +47,7 @@ def test_greeting_message(driver):
 
 def test_greeting_message_border_size(driver):
     # Открываем веб-страницу
-    driver.get("file:///D:/work/Python/pytest/test_web_page/index.html")
+    driver.get(f"file:///{os.path.abspath(os.getcwd())}/index.html")
 
     # Находим поле для ввода имени и вводим имя пользователя
     name_input = driver.find_element(By.ID, "name_input")
@@ -55,14 +57,14 @@ def test_greeting_message_border_size(driver):
     submit_button = driver.find_element(By.ID, "submit_button")
     submit_button.click()
 
-    # Находим элемент с приветствием и проверяем, что оно правильное
+    # Находим элемент с приветствием и проверяем, что ширина границы правильная
     greeting_message = driver.find_element(By.ID, "greeting_message")
     assert greeting_message.value_of_css_property("border-width") == "2px"
 
 
 def test_greeting_message_color(driver):
     # Открываем веб-страницу
-    driver.get("file:///D:/work/Python/pytest/test_web_page/index.html")
+    driver.get(f"file:///{os.path.abspath(os.getcwd())}/index.html")
 
     # Находим поле для ввода имени и вводим имя пользователя
     name_input = driver.find_element(By.ID, "name_input")
@@ -72,7 +74,7 @@ def test_greeting_message_color(driver):
     submit_button = driver.find_element(By.ID, "submit_button")
     submit_button.click()
 
-    # Находим элемент с приветствием и проверяем, что оно правильное
+    # Находим элемент с приветствием и проверяем, что цвет правильный
     greeting_message = driver.find_element(By.ID, "greeting_message")
     greeting_message_color_hex = Color.from_string(greeting_message.value_of_css_property("color")).hex
     assert greeting_message_color_hex == "#ffffff"
